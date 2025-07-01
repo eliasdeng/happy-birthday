@@ -73,8 +73,10 @@ function PhotoGallery() {
 	const [currentIndex, setCurrentIndex] = useState(0)
 
 	const openPhoto = (index: number) => {
-		setCurrentIndex(index)
-		setSelectedPhoto(photos[index].id)
+		if (photos[index]) {
+			setCurrentIndex(index)
+			setSelectedPhoto(photos[index].id)
+		}
 	}
 
 	const closePhoto = () => {
@@ -83,14 +85,18 @@ function PhotoGallery() {
 
 	const nextPhoto = () => {
 		const nextIndex = (currentIndex + 1) % photos.length
-		setCurrentIndex(nextIndex)
-		setSelectedPhoto(photos[nextIndex].id)
+		if (photos[nextIndex]) {
+			setCurrentIndex(nextIndex)
+			setSelectedPhoto(photos[nextIndex].id)
+		}
 	}
 
 	const prevPhoto = () => {
 		const prevIndex = (currentIndex - 1 + photos.length) % photos.length
-		setCurrentIndex(prevIndex)
-		setSelectedPhoto(photos[prevIndex].id)
+		if (photos[prevIndex]) {
+			setCurrentIndex(prevIndex)
+			setSelectedPhoto(photos[prevIndex].id)
+		}
 	}
 
 	const currentPhoto = photos[currentIndex]
